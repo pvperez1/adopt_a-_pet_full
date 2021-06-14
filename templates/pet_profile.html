@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ pet.name }}</h1>
+<img src="{{ pet.url }}" alt="">
+<p>{{ pet.description }}</p>
+<ul>
+  {% if pet.breed %}
+  <li>Breed: {{ pet.breed }}</li>
+  {% else %}
+  <li>No breed info available</li>
+  {% endif %}
+  <li>Age: {{ pet.age }}</li>
+</ul>
+<form action="{{ url_for('modify',pet_type=pet.type, pet_id=pet.id) }}" method="post">
+  <input class="btn btn-secondary" type="submit" value="Edit" name="action">
+  <input class="btn btn-danger" type="submit" value="Delete" name="action">
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Pet Profile</h1>
+<form action="{{ url_for('update', pet_id=pet.id) }}" method="post">
+    <label for="p_type">Type of Pet:</label>
+    <select name="pet_type" id="p_type">
+        {% if pet.type == 'dogs' %}
+        <option value="dogs" selected>Dog</option>
+        {% else %}
+        <option value="dogs">Dog</option>
+        {% endif %}
+        {% if pet.type == 'cats' %}
+        <option value="cats" selected>Cat</option>
+        {% else %}
+        <option value="cats">Cat</option>
+        {% endif %}
+        {% if pet.type=='rabbits' %}
+        <option value="rabbits" selected>Rabbit</option>
+        {% else %}
+        <option value="rabbits">Rabbit</option>
+        {% endif %}
+    </select><br><br>
+    <label for="p_name">Name of Pet:</label>
+    <input type="text" name="pet_name" id="p_name" value="{{ pet.name }}" required><br><br>
+    <label for="p_breed">Breed:</label>
+    <input type="text" name="pet_breed" id="p_breed" value="{{ pet.breed }}"><br><br>
+    <label for="p_age">Age:</label>
+    <input type="number" name="pet_age" id="p_age" value="{{ pet.age }}"><br><br>
+    <label for="p_url">Image URL:</label>
+    <input type="url" name="pet_url" id="p_url" value="{{ pet.url }}"><br>
+    <textarea name="pet_desc" cols="30" rows="10">{{ pet.description }}</textarea><br>
+    <input class="btn btn-primary" type="submit" value="Save">
+    <a class="btn btn-secondary" href="{{ url_for('pet', pet_id=pet.id) }}">Cancel</a>
+</form>
+{% endblock %}
